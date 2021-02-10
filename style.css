@@ -1,0 +1,85 @@
+.btn{
+    border-radius: 0.375rem;
+    padding-top:0.375rem;
+    padding-bottom: 00.375rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.btn:hover{
+    --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.btn:focus{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.btn:active{
+    --tw-ring-color: rgba(217, 119, 6);
+    box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+}
+
+.btn-icon:focus{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    }
+.btn-icon:active{
+    border-radius: 0.375rem;
+    background-color: #fc8181;
+    color: white !important;
+
+}
+.form-control{
+
+    max-width: 15rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.125rem;
+    margin-right: 0.125rem;
+    justify-content: center;
+}
+.form-control .btn{
+    width: 100%;
+}
+.form-control label{
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.form-control input[type=text]{
+padding-top: 0.75rem;
+padding-bottom: 0.75rem;
+padding-left: 1rem;
+padding-right: 1rem;
+border-radius: 0.25rem;
+}
+.form-control>select{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 4.55rem;
+    padding-right: 4.55rem;
+    border-radius: 0.25rem;
+    
+    }
+
+.form-control textarea{
+    resize: none;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;   
+}
+                                                                                                                                                                                                                                                                                                      
+.form-control select:focus,input:focus,textarea:focus{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-bottom-width: 2px;
+	--tw-border-opacity: 1;
+    border-style: solid;    
+    border-color: rgba(217, 119, 6, var(--tw-border-opacity));
+}

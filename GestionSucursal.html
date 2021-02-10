@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tailwind CSS Modal</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+  <style>
+    .modal {
+      transition: opacity 0.25s ease;
+    }
+    body.modal-active {
+      overflow-x: hidden;
+      overflow-y: visible !important;
+    }
+  </style>
+</head>
+
+<body >
+	<nav class="flex bg-fixed items-center justify-between flex-wrap bg-grey-darkest p-6  w-full z-10 pin-t bg-yellow-500">
+		<div class="lg:w-3/5 sm:w-3/4   items-center flex-no-shrink text-white ">
+			<a class="text-white no-underline hover:text-white hover:no-underline " href="#">
+				<span class=" md:text-2xl pl-2 " ><i class="em em-grinning"></i> PANEL DE USUARIO HUB</span>
+			</a>
+		</div>
+
+		<div class="sm:w-1/4  block lg:hidden bg-yellow-500">
+			<button id="nav-toggle" class=" float-right  px-3 py-2 border rounded text-grey border-grey-dark hover:text-white hover:border-white">
+				<svg class="fill-current sm:h-6 sm:w-6 h-5 w-5 " viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="lg:w-2/5 w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center">
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50 ">
+					<a class="inline-block py-2 px-4 text-white no-underline" href="GestionSucursal.html">Sucursales</a>
+				</li>
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50">
+					<a class="inline-block text-white no-underline hover:text-underline py-2 px-4" href="RegistrarVales.html">Vales</a>
+				</li>
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50 ">
+					<a class="inline-block text-white no-underline hover:text-grey-lighter hover:text-underline py-2 px-4" href="#">Roles</a>
+				</li>
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50 ">
+					<a class="inline-block text-white  hover:text-underline py-2 px-4" href="#">Reporte</a>
+				</li>
+			</ul>
+		</div>
+  </nav>
+  <div class="container  mx-auto  p-5 ">
+      <h1 class=" text-center text-lg font-bold"> Gestion Sucursales</h1>
+      <div class="flex wrap  flex-col mt-4 gap-4 ">
+        <div class=" text-center lg:text-left  lg:ml-10 lg:pl-10 flex-initial p-1">
+          <p class="text-md font-bold"> Registrar:</p>
+		</div>
+		<div class=" flex md:flex-row flex-col  md:items-stretch items-center md:space-x-4 gap-4 text-center">
+			<div class="md:w-1/5 w-60 bg-gray-500 text-center   p-2"> 
+				<form action="" class="flex flex-col ">
+				<input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Nombre Tienda"   type="text">
+				<input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Departamento"   type="text">
+				<input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Provinicia"   type="text">
+				<input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Dirección"   type="text">
+				<input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Teléfono"   type="number">
+				<button class=" mt-2 bg-yellow-500 text-white font-semibold p-2 rounded"> Guardar</button>
+			</form>
+
+			</div>
+			<div class=" grid  md:w-4/5  overflow-x-scroll  md:overscroll-auto w-11/12 " >
+				<table class="table-auto  border-collapse separate border-yellow-200 bg-gray-500 " >
+					<thead>
+						<th class="border border-yellow-400 md:p-2 md:px-10 bg-yellow-500">Departamento</th>
+						<th class="border border-yellow-400 md:p-2 md:px-10  bg-yellow-500" >Provincia</th>
+						<th class="border border-yellow-400 md:p-2 md:px-10 bg-yellow-500" >Distrito</th>
+						<th class="border border-yellow-400 md:p-2 md:px-10 bg-yellow-500"  >Teléfono</th>
+						<th  class="border border-yellow-400 md:p-2 md:px-10 bg-yellow-500" >Acción</th>
+					</thead>
+					<tbody >
+						<tr>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200" >Lima</td>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200">Lima</td>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200" >Darkness</td>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200"  >897123475</td>
+							<td class="border border-yellow-400  bg-gray-200 flex flex-row justify-center  " >
+							<button  >
+								<svg class=" h-10 text-blue-500  " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+								  </svg>
+								</button>
+							<button>	
+							  <svg  class=" h-10 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+							  </svg>
+							  </button>
+							 </td>
+
+						</tr>
+						<tr>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200" >Lima</td>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200">Lima</td>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200" >Darkness</td>
+							<td class="border border-yellow-400 md:p-1 bg-gray-200"  >897123475</td>
+							<td class="border border-yellow-400  bg-gray-200 flex flex-row justify-center  " >
+							<button  >
+								<svg class=" h-10 text-blue-500  " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+								  </svg>
+								</button>
+							<button>	
+							  <svg  class=" h-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+							  </svg>
+							  </button>
+							 </td>
+
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+      </div>
+  </div>
+  <script>
+		//Javascript to toggle the menu
+		document.getElementById('nav-toggle').onclick = function(){
+			document.getElementById("nav-content").classList.toggle("hidden");
+		}
+	</script>
+
+</body>
+</html>

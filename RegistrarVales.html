@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>RegVale</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+    <style>
+      .modal {
+        transition: opacity 0.25s ease;
+      }
+      .modal-screen-detalle {
+        transition: opacity 0.25s ease;
+      }
+      .modal-screen-motivo {
+        transition: opacity 0.25s ease;
+      }
+      body.modal-active {
+        overflow-x: hidden;
+        overflow-y: visible !important;
+      }
+      body.modal-active-detalle {
+        overflow-x: hidden;
+        overflow-y: visible !important;
+      }
+      body.modal-active-motivo {
+        overflow-x: hidden;
+        overflow-y: visible !important;
+      }
+      textarea{
+          resize:none;
+      }
+    </style>
+</head>
+<body>
+	<nav class="flex  bg-fixed  items-center justify-between flex-wrap bg-grey-darkest p-6  w-full z-10 pin-t bg-yellow-500">
+		<div class="lg:w-3/5 sm:w-3/4   items-center flex-no-shrink text-white ">
+			<a class="text-white no-underline hover:text-white hover:no-underline " href="#">
+				<span class=" md:text-2xl pl-2 " ><i class="em em-grinning"></i> PANEL DE USUARIO HUB</span>
+			</a>
+		</div>
+
+		<div class="sm:w-1/4  block lg:hidden bg-yellow-500">
+			<button id="nav-toggle" class=" float-right  px-3 py-2 border rounded text-grey border-grey-dark hover:text-white hover:border-white">
+				<svg class="fill-current sm:h-6 sm:w-6 h-5 w-5 " viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+			</button>
+		</div>
+
+		<div class="lg:w-2/5 w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+			<ul class="list-reset lg:flex justify-end flex-1 items-center">
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50 ">
+					<a class="inline-block py-2 px-4 text-white no-underline" href="GestionSucursal.html">Sucursales</a>
+				</li>
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50">
+					<a class="inline-block text-white no-underline hover:text-underline py-2 px-4" href="RegistrarVales.html">Vales</a>
+				</li>
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50 ">
+					<a class="inline-block text-white no-underline hover:text-grey-lighter hover:text-underline py-2 px-4" href="#">Roles</a>
+				</li>
+				<li class="mr-3 hover:bg-gray-500 hover:bg-opacity-50 ">
+					<a class="inline-block text-white  hover:text-underline py-2 px-4" href="#">Reporte</a>
+				</li>
+			</ul>
+		</div>
+  </nav>
+    <div class="container mx-auto p-5">     
+        <h1 class="text-center font-semibold text-xl">Registrar Vale</h1>
+       <div class="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4  my-3">
+
+      		<div class="grid grid-cols-1 gap-3 bg-gray-300">
+                <div class=" p-2 text-center" >
+                    <input class=" w-52 lg:w-64  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Nombre Vale"   type="text">
+                    
+                </div>
+                <div class="  text-center p-2">
+                    <h3 class="text-center text-gray-600">Descripcion Vale:</h3>
+                    <textarea class="bg-gray-200 p-2 border-l-4 border-yellow-400 focus:outline-none " name="" id="" cols="29" rows="5"></textarea>
+            </div>
+            <div class="  text-center p-2" >
+          
+                <label class=" text-md mr-2 font-semibold text-gray-500"> *Ejemplo Descripción:</label>
+                <p class="my-1 p-2 text-base leading-tight text-sm text-gray-700 " >2 Asado de Lomo Enrollado – 1.4 kg prom.
+                    Enrollado de Cerdo con Frutas – 1.3kg prom.
+                    Aceitunas X 240GR – Bolsa 240gr
+                    Aderezo para Carnes X 500GR – Bolsa 500gr
+                    Sal de Maras – Bolsa x 250gr
+                    Bandeja – Grande aluminio</p>
+            </div>
+          </div>	       
+      		<div class="grid grid-cols-1  bg-gray-300">
+                <div class=" text-center p-2 ">
+                    <label class="w-full block text-xs  font-semibold text-gray-700">Tipo de Vale:</label>
+                    <select  class="rounded my-1 py-2 px-4  w-52 lg:w-64" name="" id="">
+                        <option value="producto">Producto</option>
+                        <option value="servicio">Servicio </option>
+                    </select>
+                </div> 
+                <div class=" text-center p-2" > 
+                    <label class="w-full block text-xs  font-semibold text-gray-700">Unidad:</label>
+                    <select  class="rounded my-1 py-2 px-4 w-52 lg:w-64" name="" id="">
+                        <option value="producto">Kilogramo</option>
+                        <option value="servicio">Unidad</option>
+                    </select>
+        
+                    <label class="w-full block text-xs  font-semibold text-gray-700">Categoria:</label>
+                    <select  class="rounded my-1 py-2 px-2 w-52 lg:w-64 " name="" id="">
+                        <option value="producto">Categoria 1</option>
+                        <option value="servicio">Categoria 2 </option>
+                    </select>
+        
+                </div>
+                <div class= " text-center px-2 py-4">
+                    <input type='file' class="" />
+             </div>
+               
+
+            </div>
+            <div class="grid grid-cols-1 bg-gray-300">
+               
+        
+            <div class="  text-center px-2 py-4  " >     
+                <label class="w-full block text-xs  font-semibold text-gray-700">Precio Regular:</label>
+                <input class="  my-1 bg-gray-200 p-2 lg:w-64 w-52 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400" placeholder="Precio Regular"   type="number">
+                <label class="w-full block text-xs  font-semibold  text-gray-700">Descuento:</label>
+                <select  class="rounded my-1 py-2 px-8 lg:w-64 w-52 " name="" id="">
+                    <option   value="producto">30%</option>
+                    <option value="servicio">40% </option>
+                    <option value="servicio">50% </option>
+                </select>
+              </div>
+    
+            <div  class=" text-center p-2" >
+              <label class="w-full block text-xs  font-semibold  text-gray-700">Ganancia:</label>
+                <input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Precio Cliente"   type="number" disabled>
+            </div>
+            <div class="text-center  p-2 " >
+                <label class="w-full block text-xs  font-semibold  text-gray-700">Comisión:</label>
+                    <input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Precio Cliente"   type="number" disabled>
+                  <label class="w-full block text-xs  font-semibold  text-gray-700">Precio del Cliente:</label>
+                    <input class="  my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  " placeholder="Precio Cliente"   type="number" disabled>    
+            </div>
+            </div>
+       </div>
+       <div class="grid container mx-auto md:p-8  bg-red-600 overflow-x-scroll md:overflow-hidden ">
+        <table class="table-auto  border-collapse separate  border-yellow-500 bg-gray-300 " >
+            <thead>
+                <th class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500">Descripción</th>
+                <th class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500" >Tipo</th>
+                <th class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500" >Precio Reg.</th>
+                <th class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500"  >Desc.</th>
+                <th  class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500" >Stock</th>
+                <th  class="border border-yellow-400 md:p-2 py-1 px-2  bg-yellow-500" >Estado</th>
+                <th class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500"  ></th>
+                <th class="border border-yellow-400 md:p-2 py-1 px-2 bg-yellow-500"  ></th>
+            </thead>
+            <tbody >
+                <tr>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200" >Lima</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200">Producto</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200" >130</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200"  >50%</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200 text-center"> <button class=" modal-stock bg-yellow-500 text-white font-semibold px-2 py-1 rounded"> 40 </button></td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200 text-center"> <button class=" bg-red-600 text-black font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-red-600 ">En revisión</button></td>                   
+                    <td class="border border-yellow-400  py-1 px-1 bg-gray-200 flex flex-row justify-center" >
+                    <button>
+                        <svg class=" h-10 text-blue-500  " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                    <button>	
+                      <svg  class=" h-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                      </button>
+                     </td>
+                     <td class="border border-yellow-400 md:p-1 bg-gray-200 text-center"  ><button class="modal-detalle border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-500 font-semibold px-1 py-1 rounded">Ver Detalle</button></td>
+                    
+                </tr>
+                <tr>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200" >Lima</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200">Producto</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200" >130</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200"  >50%</td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200 text-center"> <button class=" modal-stock bg-yellow-500 text-white font-semibold px-2 py-1 rounded"> 40 </button></td>
+                    <td class="border border-yellow-400 md:p-1  px-1 bg-gray-200 text-center"> <button class=" bg-red-600 text-black font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-red-600 ">En revisión</button></td>                   
+                    <td class="border border-yellow-400  py-1 px-1 bg-gray-200 flex flex-row justify-center" >
+                    <button>
+                        <svg class=" h-10 text-blue-500  " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                    <button>	
+                      <svg  class=" h-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                      </button>
+                     </td>
+                     <td class="border border-yellow-400 md:p-1 bg-gray-200 text-center"  ><button class="modal-motivo border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-500 font-semibold px-1 py-1 rounded">Ver Motivo</button></td>
+                    
+                </tr>
+            </tbody>
+        </table>
+       </div>
+    </div>
+
+
+ <!--Modal Stock-->
+ <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+    
+    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+      
+      <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+        </svg>
+        <span class="text-sm">(Esc)</span>
+      </div>
+
+      <!-- Add margin if you want to see some of the overlay behind the modal-->
+      <div class="modal-content py-4 text-left px-6">
+        <!--Title-->
+        <div class="flex justify-between items-center pb-3">
+          <p class="text-2xl font-bold">Gestionar Stock</p>
+          <div class="modal-close cursor-pointer z-50">
+            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!--Body-->
+     
+           <form  class="grid grid-cols-2" action="">
+            <p class="text-center py-1">Vale :</p> <p>Carne-Productos</p>
+            <p class="text-center py-1">Tipo Vale :</p> <p>Producto</p>
+            <p class="text-center py-1"> Stock : </p> <input class=" bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400" placeholder="Stock"   type="number" >    
+            <div class="col-span-2 text-center "> <button class=" w-52 bg-yellow-400 focus:outline-none p-2 my-3 border rounded ">Guardar</button></div> 
+         </form>
+      
+
+        <!--Footer-->
+        <div class="flex justify-end pt-2">
+            <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Modal Stock-->
+  <!-- Modal Detalle -->
+
+  <div class="modal-screen-detalle opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+  <div class="modal-overlay-detalle absolute w-full h-full bg-gray-900 opacity-50"></div>
+  
+  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+    
+    <div class="modal-close-detalle absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+      </svg>
+      <span class="text-sm">(Esc)</span>
+    </div>
+
+    <!-- Add margin if you want to see some of the overlay behind the modal-->
+    <div class="modal-content py-4 text-left px-6">
+      <!--Title-->
+      <div class="flex justify-between items-center pb-3">
+        <p class="text-2xl font-bold">Detalle</p>
+        <div class="modal-close-detalle cursor-pointer z-50">
+          <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!--Body-->
+     <div class=" h-5/6">
+        <div class=" grid justify-center">
+            <div class="w-32 h-32 bg-red-300"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 ">
+          <div class="flex ">  <p class="text-yellow-500 px-2 ">Vale: </p> <p>Lima-Lima-Olivos</p></div> 
+            <div class="flex">  <p class="text-yellow-500 px-2 ">Categoria:</p> <p>Producto</p></div>
+            
+        </div>
+        <div class="grid grid-cols-3 ">
+             <p class="text-yellow-500 px-2 ">Descripción Vale: </p> <p class="col-span-3 md:col-span-2 text-sm">2 Asado de Lomo Enrollado – 1.4 kg prom.
+                Enrollado de Cerdo con Frutas – 1.3kg prom.
+                Aceitunas X 240GR – Bolsa 240gr
+                Aderezo para Carnes X 500GR – Bolsa 500gr
+                Sal de Maras – Bolsa x 250gr
+                Bandeja – Grande aluminio</p>
+        
+              
+          </div>
+          <div class="grid md:grid-cols-3 grid-cols-1">
+            <div class="flex ">  <p class="text-yellow-500 px-2 ">Precio: </p> <p>130</p></div> 
+            <div class="flex">  <p class="text-yellow-500  ">Precio Cliente:</p> <p>104</p></div>
+            <div class="flex ">  <p class="text-yellow-500 px-2 ">Ganancia: </p> <p>342</p></div> 
+            <div class="flex ">  <p class="text-yellow-500 px-2 ">Descuento: </p> <p>30%   </p></div> 
+            <div class="flex">  <p class="text-yellow-500  ">Comisión:</p> <p>104</p></div>
+            
+         
+          </div>
+     </div>
+
+      <!--Footer-->
+      <div class="flex justify-end pt-2">
+        <button class="modal-close-detalle px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- MODAL DETALLE -->
+  <!-- MODAL MOTIVO -->
+  <div class="modal-screen-motivo opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal-overlay-motivo absolute w-full h-full bg-gray-900 opacity-50"></div>
+    
+    <div class="modal-container bg-white max-h-screen max-w-md md:max-w-xl: lg:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
+      
+      <div class="modal-close-motivo absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+        </svg>
+        <span class="text-sm">(Esc)</span>
+      </div>
+  
+      <!-- Add margin if you want to see some of the overlay behind the modal-->
+      <div class="modal-content py-4 text-left px-6">
+        <!--Title-->
+        <div class="flex justify-between items-center pb-3">
+          <p class="text-2xl font-bold">Motivo</p>
+          <div class="modal-close-motivo cursor-pointer z-50">
+            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+            </svg>
+          </div>
+        </div>
+  
+        <!--Body-->
+       <div class="">
+          <div class=" grid grid-cols-1 md:grid-cols-6 justify-center">
+            <p class=" text-center md:flex md:items-center  text-yellow-500 ">Mensaje: </p>
+            <p class= "py-3 md:py-0 flex items-center text-center md:col-span-3 md:col-span-3 text-sm text-red-600 bg-gray-300 mr-1">
+                La imagen no es muy Clara
+                Y debe especifica mejor la descripción del Vale, 
+                hay un ejemplo al registrar la descripción del Vale
+            </p>
+              <div class="flex items-center my-3 md:my-0  block md:w-32 md:h-32 bg-red-300 p-4"> <img src="https://lh3.googleusercontent.com/proxy/qEyWzbHJV-7ngkLXRBKGhQibnKzGaP0G4IceNzmvFpkAW2fVWyJurQrgwt3yOxTEu7xq9oi5VdKfe56cCUyr4wxxhANNLHkXgdnQyYnWI0sN" alt=""> </div>
+          </div>
+          <h1 class="text-xl text-center p-2 text-bold">Editar</h1>
+          <div class="grid grid-cols-1 lg:grid-cols-none lg:grid-cols-2 ">
+            <div class="grid grid-cols-3 md:flex ">  
+                <p class="flex items-center text-yellow-500 px-2 md:mr-10">Vale: </p> 
+                <input class=" col-span-2 md:grid-cols-none md:ml-6 my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  "   type="text" value="Lima-Lima-Callao"></div> 
+            <div class="grid grid-cols-3 md:flex  ">  
+                <p class="flex items-center text-yellow-500 px-2 ">Categoria: </p> 
+                <select  class=" col-span-2 md:grid-cols-none  lg:ml-0 md:ml-6 rounded my-1 py-2 px-4 bg-gray-300 focus:outline-none border-l-4 border-yellow-400 md:w-32"  name="" id="">
+                    <option value="producto">Producto</option>
+                    <option value="servicio">Servicio </option>
+                </select>
+            </div> 
+           
+          </div>
+          <div class="grid grid-cols-4 bg-green-400">
+               <p class="flex   items-center text-yellow-500 px-2  ">Descripción Vale: </p> 
+               <div class=" p-2 cols-span-3">
+                <textarea class="bg-gray-200 p-2  border-l-4 border-yellow-400 focus:outline-none " name="" id="" cols="30" rows="4"></textarea>       
+               </div>
+                
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 my-1 ">
+                <div class="grid grid-cols-3 md:flex   "> 
+                     <p class="flex items-center text-yellow-500 px-2 ">Precio Regular: </p>   
+                    <input class=" col-span-2 md:grid-cols-none my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400" type="numer" value="123">
+            </div> 
+                <div class="grid grid-cols-3 md:flex  ">  
+                    <p class="flex items-center text-yellow-500 px-2 ">Descuento: </p> 
+                    <select  class="col-span-2 md:grid-cols-none     rounded my-1 py-2 px-4 bg-gray-300 focus:outline-none border-l-4 border-yellow-400 md:w-32" name="" id="">
+                        <option value="producto">10%</option>
+                        <option value="producto">20%</option>
+                        <option value="producto">30%</option>
+                        <option value="producto">40%</option>
+                        <option value="servicio">50% </option>
+                    </select>
+                </div> 
+               
+              </div>
+            <div class="grid md:grid-cols-3 grid-cols-1 my-1">
+              <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Precio: </p> 
+                <p class="col-span-2 md:grid-cols-none " >130</p></div>        
+              <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Ganancia: </p> 
+                <p  class="col-span-2 md:grid-cols-none ">130</p>
+            </div>  
+             <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Comision: </p> 
+                <p class="col-span-2 md:grid-cols-none ">130</p>
+            </div>  
+           
+            </div>
+       </div>
+  
+        <!--Footer-->
+        <div class="flex justify-end pt-2">
+          <button class="modal-close-motivo px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MOTIVO -->
+</body>
+<script>
+    //Javascript to toggle the menu
+    document.getElementById('nav-toggle').onclick = function(){
+        document.getElementById("nav-content").classList.toggle("hidden");
+    }
+
+    //modal Stock
+    var openmodal = document.querySelectorAll('.modal-stock')
+    for (var i = 0; i < openmodal.length; i++) {
+      openmodal[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleModal()
+      })
+    }
+    
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+    
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+      closemodal[i].addEventListener('click', toggleModal)
+    }
+    
+    document.onkeydown = function(evt) {
+      evt = evt || window.event
+      var isEscape = false
+      if ("key" in evt) {
+    	isEscape = (evt.key === "Escape" || evt.key === "Esc")
+      } else {
+    	isEscape = (evt.keyCode === 27)
+      }
+      if (isEscape && document.body.classList.contains('modal-active')) {
+    	toggleModal()
+      }
+    };
+    
+    
+    function toggleModal () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal')
+      modal.classList.toggle('opacity-0')
+      modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active')
+    }
+    
+
+    //MODAL DETALLE
+
+    var openmodal = document.querySelectorAll('.modal-detalle')
+    for (var i = 0; i < openmodal.length; i++) {
+      openmodal[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleModal2()
+      })
+    }
+
+    const overlayMot = document.querySelector('.modal-overlay-detalle')
+    overlayMot.addEventListener('click', toggleModal2)
+    
+    var closemodal = document.querySelectorAll('.modal-close-detalle')
+    for (var i = 0; i < closemodal.length; i++) {
+      closemodal[i].addEventListener('click', toggleModal2)
+    }
+    
+
+    document.onkeydown = function(evt) {
+      evt = evt || window.event
+      var isEscape = false
+      if ("key" in evt) {
+    	isEscape = (evt.key === "Escape" || evt.key === "Esc")
+      } else {
+    	isEscape = (evt.keyCode === 27)
+      }
+      if (isEscape && document.body.classList.contains('modal-active-detalle')) {
+    	toggleModal2()
+      }
+    };
+           
+    function toggleModal2 () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal-screen-detalle')
+      modal.classList.toggle('opacity-0')
+      modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active-detalle')
+    }
+    
+    //MODAL MOTIVO
+    var openmodal = document.querySelectorAll('.modal-motivo')
+    for (var i = 0; i < openmodal.length; i++) {
+      openmodal[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleModal3()
+      })
+    }
+
+    const overlayDet = document.querySelector('.modal-overlay-motivo')
+    overlayDet.addEventListener('click', toggleModal3)
+    
+    var closemodal = document.querySelectorAll('.modal-close-motivo')
+    for (var i = 0; i < closemodal.length; i++) {
+      closemodal[i].addEventListener('click', toggleModal3)
+    }
+    
+
+    document.onkeydown = function(evt) {
+      evt = evt || window.event
+      var isEscape = false
+      if ("key" in evt) {
+    	isEscape = (evt.key === "Escape" || evt.key === "Esc")
+      } else {
+    	isEscape = (evt.keyCode === 27)
+      }
+      if (isEscape && document.body.classList.contains('modal-active-motivo')) {
+    	toggleModal3()
+      }
+    };
+           
+    function toggleModal3 () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal-screen-motivo')
+      modal.classList.toggle('opacity-0')
+      modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active-motivo')
+    }
+</script>
+</html>
