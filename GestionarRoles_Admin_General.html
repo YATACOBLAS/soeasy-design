@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tailwind CSS Modal</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .modal {
+      transition: opacity 0.25s ease;
+    }
+    body.modal-active {
+      overflow-x: hidden;
+      overflow-y: visible !important;
+    }
+  </style>
+</head>
+
+<body >
+    <div class="w-full text-white bg-yellow-500 ">
+        <div x-data="{ open: false }"
+         class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+          <div class="p-4 flex flex-row items-center justify-between">
+            <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">SO Easy UI</a>
+            <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+              <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+          <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+            <a class="px-8 py-2 mt-2 text-sm font-semibold  rounded-sm  md:mt-0 md:ml-2 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700  focus:outline-none focus:shadow-outline" href="#">Portfolio</a>
+            <a class="px-8 py-2 mt-2 text-sm font-semibold  rounded-sm  md:mt-0 md:ml-2 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700  focus:outline-none focus:shadow-outline" href="#">Portfolio</a>
+            <a class="px-8 py-2 mt-2 text-sm font-semibold  rounded-sm  md:mt-0 md:ml-2 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700  focus:outline-none focus:shadow-outline" href="#">Portfolio</a>
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open" class="flex flex-row items-center w-full px-8 py-2 mt-2 text-sm font-semibold text-left  rounded-sm md:w-auto md:inline md:mt-0 md:ml-2 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700 focus:outline-none focus:shadow-outline">
+                <span>Menu</span>
+                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                <div class="px-2 py-2 bg-yellow-500 rounded-md shadow ">
+                  <a class="block px-4 py-2 mt-2 text-sm font-semibold rounded-sm md:mt-0 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700 focus:outline-none focus:shadow-outline" href="#">Link #1</a>
+                  <a class="block px-4 py-2 mt-2 text-sm font-semibold rounded-sm md:mt-0 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700 focus:outline-none focus:shadow-outline" href="#">Link #1</a>
+                  <a class="block px-4 py-2 mt-2 text-sm font-semibold rounded-sm md:mt-0 hover:text-white focus:text-white hover:bg-yellow-700 focus:bg-yellow-700 focus:outline-none focus:shadow-outline" href="#">Link #1</a>
+                </div>
+              </div>
+            </div>    
+          </nav>
+        </div>
+      </div>
+<div class="grid grid-rows-1   container mx-auto  my-3  p-3">
+<div class="  grid justify-center md:justify-start  p-2">
+    <div class="form-control">
+        <input type="text" class="bg-gray-200" placeholder="@Email">
+    </div>
+</div>
+<form action="  " class="grid md:grid-cols-4 grid-cols-1   gap-4">
+  <div class=" grid  md:col-span-2 overflow-x-auto rounded-sm lg:mt-8">
+    <table class="table-auto  border border-yellow-800 w-full ">
+        <thead class="bg-yellow-500  ">
+            <tr class="">
+                <th class="py-3 px-4 border border-yellow-500">Nombre</th>
+                <th class="py-3 px-4 border border-yellow-500">Email</th>              
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr class=""> 
+                <td class="whitespace-nowrap px-2 py-1 border border-yellow-500 ">Hugo Damian Reos Vilcapoma</td>
+                <td class="whitespace-nowrap px-2 py-1 border border-yellow-500">Vilca-1254_34@gmail.com</td>
+            </tr>
+            <tr class=""> 
+              <td class="whitespace-nowrap px-2 py-1 border border-yellow-500 ">Hugo Damian Reos Vilcapoma</td>
+              <td class="whitespace-nowrap px-2 py-1 border border-yellow-500">Vilca-1254_34@gmail.com</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+  <div class="p-2 grid  grid-rows-2 md:col-span-2 lg:col-span-1 ">
+    <h3 class=" flex items-center justify-center font-semibold">Personal</h3>
+    <div class="bg-gray-200 py-2">
+      <h1 class="whitespace-nowrap font-semibold  text-center">Hugo Damian Reos Vilcapoma</h1>
+      <h1 class="whitespace-nowrap font-semibold  text-center"> Vilca-1254_34@gmail.com</h1>
+    </div>
+  </div>
+<div class=" grid justify-center md:col-span-4 lg:col-span-1 grid-rows-2 ">
+  <h3 class=" flex items-center justify-center font-semibold">Asignar Roles</h3>
+      <div class="form-control p-0">
+        <select class="bg-gray-200" name="" id="" class=" " >
+            <option value="" class="" >OPCION 1</option >
+            <option value="">OPCION 2</option>
+            <option value="">OPCION 2</option>
+            <option value="">OPCION 2</option>
+            <option value="">OPCION 2</option>
+        </select>
+    </div>
+    <div class="form-control">
+      <select  class="bg-gray-200" name="" id="" >
+          <option value="" >OPCION 1</option >
+          <option value="">OPCION 2</option>
+      </select>
+    </div>
+</div>
+<div class=" grid justify-center md:col-span-4 ">
+<div class="form-control">
+  <button class="btn bg-yellow-500 hover:bg-yellow-600  ">Registrar</button>
+</div>
+
+</div>
+</form>
+<div class="grid   p-2 overflow-x-auto rounded-sm ">
+  <table class="table-auto  border border-yellow-800 w-full text-center ">
+    <thead class="bg-yellow-500  ">
+        <tr class="">
+            <th class="py-3 px-4 border border-yellow-500">Nombre</th>
+            <th class="py-3 px-4 border border-yellow-500">Email</th>       
+            <th class="py-3 px-4 border border-yellow-500">Rol</th>  
+            <th class="py-3 px-4 border border-yellow-500">Sucursal</th>  
+            <th class="py-3 px-4 border border-yellow-500">Accion</th>          
+        </tr>
+    </thead>
+    <tbody class="bg-gray-200 ">
+        <tr class=""> 
+            <td class="whitespace-nowrap px-2 py-1 border border-yellow-500 ">Hugo Damian Reos Vilcapoma</td>
+            <td class="whitespace-nowrap px-2 py-1 border border-yellow-500">Vilca-1254_34@gmail.com</td>
+            <td class="whitespace-nowrap px-2 py-1 border border-yellow-500 ">123</td>
+            <td class="whitespace-nowrap px-2 py-1 border border-yellow-500">Pedro Salinas</td>
+            <td class="whitespace-nowrap px-2 py-1 border border-yellow-500 ">
+              <button class=" btn-icon  ">	
+                <svg  class=" h-8 md:h-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+
+
+</div> 
+
+</body>
+</html>
