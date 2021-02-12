@@ -121,7 +121,7 @@
        </div>
       </div>
        
-       <div class="grid container mx-auto md:p-8  bg-red-600 overflow-x-auto  " x-data="{stock:false}">
+       <div class="grid container mx-auto md:p-8  bg-red-600 overflow-x-auto  " x-data="{stock:false,detalle:false, editar:false}">
         <table class="table-auto  border  border-yellow-500 bg-yellow-500 w-full text-center" >
             <thead>
                 <th class="border border-yellow-400 py-3 px-4 ">Descripción</th>
@@ -146,37 +146,35 @@
                       <button class=" bg-red-600 text-black font-semibold px-2 py-1 focus:outline-none focus:ring-2 focus:ring-red-600 ">En revisión</button>
                     </td>                   
                     <td class="whitespace-nowrap border border-yellow-400 px-2 py-1 bg-gray-200" >
-                    <button>
-                        <svg class=" h-10 text-blue-500  " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button @click="editar=true">
+                        <svg  class=" h-10 text-blue-500  " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
                     </button>
-                    <button>	
+                    <button >	
                       <svg  class=" h-10 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                       </svg>
                       </button>
                      </td>
-                     <td class="border border-yellow-400 px-2 py-1 bg-gray-200 text-center"  ><button class="modal-detalle border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-500 font-semibold px-1 py-1 rounded">Ver Detalle</button></td>
+                     <td class="border border-yellow-400 px-2 py-1 bg-gray-200 text-center"  >
+                       <button @click="detalle=true" class="modal-detalle border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-yellow-500 font-semibold px-1 py-1 rounded">Ver Detalle</button>
+                      </td>
                     
                 </tr>
              
             </tbody>
         </table>
+ <!--Modal Stock-->
         <div
-   
             x-show.transition.duration.500ms="stock"
             class=" flex items-center justify-center fixed inset-0 bg-white bg-opacity-75 px-2 md:px-0 "
-            
             >
            <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto" @click.away="stock=false" >
-             <div   class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-              
+             <div   class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">            
               <svg @click="stock=!stock" class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18 " @click="stock=!stock">
                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
                </svg>
-              
-              
              </div> 
              <!-- Add margin if you want to see some of the overlay behind the modal-->
              <div class="modal-content py-4 text-left px-6">
@@ -203,66 +201,112 @@
              </div>
            </div>    
         </div>
-       </div>
-    </div>
-
-
  <!--Modal Stock-->
- <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-    
-    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+ <!--Modal Editar-->
+ <div
+ x-show.transition.duration.500ms="editar"
+ class=" flex items-center justify-center fixed inset-0 bg-white bg-opacity-75 px-2 md:px-0 "
+ >
+ <div class="modal-container bg-white max-h-screen max-w-md md:max-w-xl: lg:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto " @click.away="editar=false">
       
-      <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <div  class="modal-close-motivo absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+    <svg @click="editar = !editar" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+      <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+    </svg>
+  </div>
+
+  <!-- Add margin if you want to see some of the overlay behind the modal-->
+  <div class="modal-content py-4 text-left px-6">
+    <!--Title-->
+    <div class="flex justify-between items-center pb-3">
+      <p class="text-2xl font-bold">Motivo</p>
+      <div class="modal-close-motivo cursor-pointer z-50"  @click="editar=!editar">
+        <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
           <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
         </svg>
-        <span class="text-sm">(Esc)</span>
-      </div>
-
-      <!-- Add margin if you want to see some of the overlay behind the modal-->
-      <div class="modal-content py-4 text-left px-6">
-        <!--Title-->
-        <div class="flex justify-between items-center pb-3">
-          <p class="text-2xl font-bold">Gestionar Stock</p>
-          <div class="modal-close cursor-pointer z-50">
-            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-            </svg>
-          </div>
-        </div>
-
-        <!--Body-->
-     
-           <form  class="grid grid-cols-2" action="">
-            <p class="text-center py-1">Vale :</p> <p>Carne-Productos</p>
-            <p class="text-center py-1">Tipo Vale :</p> <p>Producto</p>
-            <p class="text-center py-1"> Stock : </p> <input class=" bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400" placeholder="Stock"   type="number" >    
-            <div class="col-span-2 text-center "> <button class=" w-52 bg-yellow-400 focus:outline-none p-2 my-3 border rounded ">Guardar</button></div> 
-         </form>
-      
-
-        <!--Footer-->
-        <div class="flex justify-end pt-2">
-            <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
-        </div>
-        
       </div>
     </div>
+
+    <!--Body-->
+   <div class="">
+      <div class=" grid grid-cols-1 md:grid-cols-6 justify-center">
+        <p class=" text-center md:flex md:items-center  text-yellow-500 ">Mensaje: </p>
+        <p class= "py-3 md:py-0 flex items-center text-center md:col-span-3 md:col-span-3 text-sm text-red-600 bg-gray-300 mr-1">
+            La imagen no es muy Clara
+            Y debe especifica mejor la descripción del Vale, 
+            hay un ejemplo al registrar la descripción del Vale
+        </p>
+          <div class="flex items-center my-3 md:my-0  block md:w-32 md:h-32 bg-red-300 p-4"> <img src="https://lh3.googleusercontent.com/proxy/qEyWzbHJV-7ngkLXRBKGhQibnKzGaP0G4IceNzmvFpkAW2fVWyJurQrgwt3yOxTEu7xq9oi5VdKfe56cCUyr4wxxhANNLHkXgdnQyYnWI0sN" alt=""> </div>
+      </div>
+      <h1 class="text-xl text-center p-2 text-bold">Editar</h1>
+      <div class="grid grid-cols-1 lg:grid-cols-none lg:grid-cols-2 ">
+        <div class="grid grid-cols-3 md:flex ">  
+            <p class="flex items-center text-yellow-500 px-2 md:mr-10">Vale: </p> 
+            <input class=" col-span-2 md:grid-cols-none md:ml-6 my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  "   type="text" value="Lima-Lima-Callao"></div> 
+        <div class="grid grid-cols-3 md:flex  ">  
+            <p class="flex items-center text-yellow-500 px-2 ">Categoria: </p> 
+            <select  class=" col-span-2 md:grid-cols-none  lg:ml-0 md:ml-6 rounded my-1 py-2 px-4 bg-gray-300 focus:outline-none border-l-4 border-yellow-400 md:w-32"  name="" id="">
+                <option value="producto">Producto</option>
+                <option value="servicio">Servicio </option>
+            </select>
+        </div>
+      </div>
+      <div class="grid grid-cols-4 bg-green-400">
+           <p class="flex   items-center text-yellow-500 px-2  ">Descripción Vale: </p> 
+           <div class=" p-2 cols-span-3">
+            <textarea class="bg-gray-200 p-2  border-l-4 border-yellow-400 focus:outline-none " name="" id="" cols="30" rows="4"></textarea>       
+           </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 my-1 ">
+            <div class="grid grid-cols-3 md:flex   "> 
+                 <p class="flex items-center text-yellow-500 px-2 ">Precio Regular: </p>   
+                <input class=" col-span-2 md:grid-cols-none my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400" type="numer" value="123">
+        </div> 
+            <div class="grid grid-cols-3 md:flex  ">  
+                <p class="flex items-center text-yellow-500 px-2 ">Descuento: </p> 
+                <select  class="col-span-2 md:grid-cols-none     rounded my-1 py-2 px-4 bg-gray-300 focus:outline-none border-l-4 border-yellow-400 md:w-32" name="" id="">
+                    <option value="producto">10%</option>
+                    <option value="producto">20%</option>
+                    <option value="producto">30%</option>
+                    <option value="producto">40%</option>
+                    <option value="servicio">50% </option>
+                </select>
+            </div>           
+          </div>
+        <div class="grid md:grid-cols-3 grid-cols-1 my-1">
+          <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Precio: </p> 
+            <p class="col-span-2 md:grid-cols-none " >130</p></div>        
+          <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Ganancia: </p> 
+            <p  class="col-span-2 md:grid-cols-none ">130</p>
+        </div>  
+         <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Comision: </p> 
+            <p class="col-span-2 md:grid-cols-none ">130</p>
+        </div>    
+        </div>
+   </div>
+
+    <!--Footer-->
+    <div class="flex justify-end pt-2">
+      <button @click="editar=!editar" class="modal-close-motivo px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+    </div>
   </div>
-  <!-- Modal Stock-->
+</div>  
+</div>
+<!--Modal Editar-->
+     
   <!-- Modal Detalle -->
 
-  <div class="modal-screen-detalle opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-  <div class="modal-overlay-detalle absolute w-full h-full bg-gray-900 opacity-50"></div>
+  <div
+  x-show.transition.duration.500ms="detalle"
+  class=" flex items-center justify-center fixed inset-0 bg-white bg-opacity-75 px-2 md:px-0 "
+  >
   
-  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto"  @click.away="detalle=false" > 
     
-    <div class="modal-close-detalle absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <div   class="modal-close-detalle absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+      <svg  @click="detalle = !detalle" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
         <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
       </svg>
-      <span class="text-sm">(Esc)</span>
     </div>
 
     <!-- Add margin if you want to see some of the overlay behind the modal-->
@@ -270,7 +314,7 @@
       <!--Title-->
       <div class="flex justify-between items-center pb-3">
         <p class="text-2xl font-bold">Detalle</p>
-        <div class="modal-close-detalle cursor-pointer z-50">
+        <div class="modal-close-detalle cursor-pointer z-50"  @click="detalle=!detalle">
           <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
             <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
           </svg>
@@ -310,113 +354,15 @@
 
       <!--Footer-->
       <div class="flex justify-end pt-2">
-        <button class="modal-close-detalle px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
+        <button   @click="detalle=!detalle" class="modal-close-detalle px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
       </div>
     </div>
   </div>
 </div>
-  <!-- MODAL DETALLE -->
-  <!-- MODAL MOTIVO -->
-  <div class="modal-screen-motivo opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-    <div class="modal-overlay-motivo absolute w-full h-full bg-gray-900 opacity-50"></div>
-    
-    <div class="modal-container bg-white max-h-screen max-w-md md:max-w-xl: lg:max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
-      
-      <div class="modal-close-motivo absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-        </svg>
-        <span class="text-sm">(Esc)</span>
-      </div>
-  
-      <!-- Add margin if you want to see some of the overlay behind the modal-->
-      <div class="modal-content py-4 text-left px-6">
-        <!--Title-->
-        <div class="flex justify-between items-center pb-3">
-          <p class="text-2xl font-bold">Motivo</p>
-          <div class="modal-close-motivo cursor-pointer z-50">
-            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-            </svg>
-          </div>
-        </div>
-  
-        <!--Body-->
-       <div class="">
-          <div class=" grid grid-cols-1 md:grid-cols-6 justify-center">
-            <p class=" text-center md:flex md:items-center  text-yellow-500 ">Mensaje: </p>
-            <p class= "py-3 md:py-0 flex items-center text-center md:col-span-3 md:col-span-3 text-sm text-red-600 bg-gray-300 mr-1">
-                La imagen no es muy Clara
-                Y debe especifica mejor la descripción del Vale, 
-                hay un ejemplo al registrar la descripción del Vale
-            </p>
-              <div class="flex items-center my-3 md:my-0  block md:w-32 md:h-32 bg-red-300 p-4"> <img src="https://lh3.googleusercontent.com/proxy/qEyWzbHJV-7ngkLXRBKGhQibnKzGaP0G4IceNzmvFpkAW2fVWyJurQrgwt3yOxTEu7xq9oi5VdKfe56cCUyr4wxxhANNLHkXgdnQyYnWI0sN" alt=""> </div>
-          </div>
-          <h1 class="text-xl text-center p-2 text-bold">Editar</h1>
-          <div class="grid grid-cols-1 lg:grid-cols-none lg:grid-cols-2 ">
-            <div class="grid grid-cols-3 md:flex ">  
-                <p class="flex items-center text-yellow-500 px-2 md:mr-10">Vale: </p> 
-                <input class=" col-span-2 md:grid-cols-none md:ml-6 my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400  "   type="text" value="Lima-Lima-Callao"></div> 
-            <div class="grid grid-cols-3 md:flex  ">  
-                <p class="flex items-center text-yellow-500 px-2 ">Categoria: </p> 
-                <select  class=" col-span-2 md:grid-cols-none  lg:ml-0 md:ml-6 rounded my-1 py-2 px-4 bg-gray-300 focus:outline-none border-l-4 border-yellow-400 md:w-32"  name="" id="">
-                    <option value="producto">Producto</option>
-                    <option value="servicio">Servicio </option>
-                </select>
-            </div> 
-           
-          </div>
-          <div class="grid grid-cols-4 bg-green-400">
-               <p class="flex   items-center text-yellow-500 px-2  ">Descripción Vale: </p> 
-               <div class=" p-2 cols-span-3">
-                <textarea class="bg-gray-200 p-2  border-l-4 border-yellow-400 focus:outline-none " name="" id="" cols="30" rows="4"></textarea>       
-               </div>
-                
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 my-1 ">
-                <div class="grid grid-cols-3 md:flex   "> 
-                     <p class="flex items-center text-yellow-500 px-2 ">Precio Regular: </p>   
-                    <input class=" col-span-2 md:grid-cols-none my-1 bg-gray-200 p-2 text-center border-l-4 border-yellow-400 focus:outline-none focus:border-gray-400" type="numer" value="123">
-            </div> 
-                <div class="grid grid-cols-3 md:flex  ">  
-                    <p class="flex items-center text-yellow-500 px-2 ">Descuento: </p> 
-                    <select  class="col-span-2 md:grid-cols-none     rounded my-1 py-2 px-4 bg-gray-300 focus:outline-none border-l-4 border-yellow-400 md:w-32" name="" id="">
-                        <option value="producto">10%</option>
-                        <option value="producto">20%</option>
-                        <option value="producto">30%</option>
-                        <option value="producto">40%</option>
-                        <option value="servicio">50% </option>
-                    </select>
-                </div> 
-               
-              </div>
-            <div class="grid md:grid-cols-3 grid-cols-1 my-1">
-              <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Precio: </p> 
-                <p class="col-span-2 md:grid-cols-none " >130</p></div>        
-              <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Ganancia: </p> 
-                <p  class="col-span-2 md:grid-cols-none ">130</p>
-            </div>  
-             <div class="grid grid-cols-3 md:flex ">  <p class="text-yellow-500 md:px-2 ">Comision: </p> 
-                <p class="col-span-2 md:grid-cols-none ">130</p>
-            </div>  
-           
-            </div>
-       </div>
-  
-        <!--Footer-->
-        <div class="flex justify-end pt-2">
-          <button class="modal-close-motivo px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="" x-data="{open:false}">
-    <button class="bg-purple-700 p-3" @click="stock=true"> Modal</button>
-  
-  </div>
+  <!-- MODAL Detalle -->
 
-  <!-- MODAL MOTIVO -->
+</div>
+</div>
 </body>
 
 </html>
